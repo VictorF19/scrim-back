@@ -1,0 +1,21 @@
+{
+  "name": "scrim-project-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor F.",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "pg": "^8.7.1",
+    "sequelize": "^6.15.0",
+    "sequelize-cli": "^6.4.1"
+  }
+}
