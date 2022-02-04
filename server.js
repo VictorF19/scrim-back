@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-const models = require("./src/models");
-const app = require("./src/app")(express, models);
+const modelInterface = require("./src/util/modelInterface")
+const app = require("./src/app")(express, modelInterface);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
