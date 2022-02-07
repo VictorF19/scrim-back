@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const errorHandler = require("./util/errorHandler")
-const morgan = require('morgan')
+const errorHandler = require("./util/errorHandler");
+const morgan = require('morgan');
 
 class Application {
   constructor(express, modelInterface) {
@@ -11,37 +11,41 @@ class Application {
   }
 
   upControllers(models, errorHandler) {
-    this._app.use(this._express.json())
-    this._app.use(morgan('combined'))
 
-    const dir = path.join(__dirname, "controllers");
-    const listControllers = fs.readdirSync(dir);
+    try {
+      this._app.use(this._express.json());
+      this._app.use(morgan('combined'));
 
-    listControllers.forEach((controllerFolder) => {
+      const dir = path.join(__dirname, "controllers");
+      const listControllers = fs.readdirSync(dir);
 
-      const methods = fs.readdirSync(`${dir}\\${controllerFolder}`);
+      listControllers.forEach((controllerFolder) => {
 
-      methods.forEach(controllerFile => {
-        const controller = require(`${dir}\\${controllerFolder}\\${controllerFile}`);
+        const methods = fs.readdirSync(`${dir}\\${controllerFolder}`);
 
-        const requestSteps = controller.middlewares
-          .map((middleware) => middleware(models))
-          .concat(controller.handler(models, errorHandler));
+        methods.forEach(controllerFile => {
+          const controller = require(`${dir}\\${controllerFolder}\\${controllerFile}`);
 
-        /**
-         * Adds the controller to the app instance
-         * passing the request options
-         * and defining the middleware that will be called
-         * before the handler itself
-         **/
+          const requestSteps = controller.middlewares
+            .map((middleware) => middleware(models))
+            .concat(controller.handler(models, errorHandler));
 
-        this._app[controller.method.toLowerCase()](
-          controller.path,
-          ...requestSteps
-        );
-      })
+          /**
+           * Adds the controller to the app instance
+           * passing the request options
+           * and defining the middleware that will be called
+           * before the handler itself
+           **/
 
-    });
+          this._app[controller.method.toLowerCase()](
+            controller.path,
+            ...requestSteps
+          );
+        });
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 
