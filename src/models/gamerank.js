@@ -14,7 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   GameRank.init({
-    gameId: DataTypes.UUIDV4,
+    gameId: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'Games',
+        key: 'id'
+      }
+    },
     rankValue: DataTypes.INTEGER,
     rankName: DataTypes.STRING
   }, {

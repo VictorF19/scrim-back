@@ -15,8 +15,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   GameProfile.init({
     nickname: DataTypes.STRING,
-    userId: DataTypes.UUIDV4,
-    gameId: DataTypes.UUIDV4
+    userId: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
+    gameId: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'Games',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'GameProfile',

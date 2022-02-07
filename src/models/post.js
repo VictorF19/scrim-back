@@ -14,9 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
-    userId: DataTypes.UUIDV4,
-    gameId: DataTypes.UUIDV4,
-    requiredRank: DataTypes.UUIDV4,
+    userId: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
+    gameId: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'Games',
+        key: 'id'
+      }
+    },
+    requiredRank: {
+      type: DataTypes.UUIDV4,
+      references: {
+        model: 'GameRank',
+        id: 'id'
+      }
+    },
     text: DataTypes.STRING
   }, {
     sequelize,
