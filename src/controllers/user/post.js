@@ -4,7 +4,6 @@ module.exports = {
     middlewares: [],
     handler: (models, errorHandler) => async (req, res) => {
         try {
-
             const jane = models.User.build({ name: "Jane", email: 'jane@hotmail.com' });
             console.log(jane.name); // "Jane"
             console.log(jane.email)
