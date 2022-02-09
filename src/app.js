@@ -1,16 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-const errorHandler = require("./util/errorHandler");
 const morgan = require('morgan');
+const { controllerHandler } = require('./util/controllerHandler');
 
 class Application {
   constructor(express, modelInterface) {
     this._express = express;
     this._app = express();
-    this.upControllers(modelInterface.models, errorHandler);
+    this.upControllers(modelInterface.models);
   }
 
-  upControllers(models, errorHandler) {
+  upControllers(models) {
 
     try {
       this._app.use(this._express.json());
@@ -26,9 +26,15 @@ class Application {
         methods.forEach(controllerFile => {
           const controller = require(`${dir}\\${controllerFolder}\\${controllerFile}`);
 
+          // function signature: someExpressFunction (req, res, next) {}
+          const someExpressFunction = controller.handler(models)
+
+          // function signature: someControllerHandler (req, res, next) {}
+          const someControllerHandler = controllerHandler(someExpressFunction)
+
           const requestSteps = controller.middlewares
             .map((middleware) => middleware(models))
-            .concat(controller.handler(models, errorHandler));
+            .concat(someControllerHandler)
 
           /**
            * Adds the controller to the app instance
