@@ -1,6 +1,6 @@
-const models = require("../models");
+const repository = require('../database/repository')
 
 // use this inferface to facilitate encapsulation of ORM methods and objects
 module.exports = {
-    models: models.sequelize.models
+    models: repository
 }

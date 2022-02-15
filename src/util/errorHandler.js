@@ -1,6 +1,6 @@
 module.exports = (error) => {
   console.log(error)
-  const errorFields = Object.getOwnPropertyNames(error.errors);
+  const errorFields = Object.getOwnPropertyNames(error);
 
   let formatedError = { errors: {} };
   errorFields.forEach((field) => {
