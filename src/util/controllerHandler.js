@@ -1,5 +1,3 @@
-const errorHandler = require('./errorHandler');
-
 // parameter of controller: (req, res, next) {}
 
 exports.controllerHandler = controller => async (req, res, next) => {
