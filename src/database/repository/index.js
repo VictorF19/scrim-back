@@ -1,5 +1,5 @@
-const models = require('../../models')
+const models = require('../../models');
 
 exports.repository = {
-    User: require('./user')(models.sequelize.models.User)
-}
+  User: require('./user')(models.sequelize.models.User),
+};

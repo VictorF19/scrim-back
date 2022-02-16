@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class GameRank extends Model {
     /**
@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUIDV4,
       references: {
         model: 'Games',
-        key: 'id'
-      }
+        key: 'id',
+      },
     },
     rankValue: DataTypes.INTEGER,
-    rankName: DataTypes.STRING
+    rankName: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'GameRank',
