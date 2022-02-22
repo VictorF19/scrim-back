@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
@@ -13,32 +11,35 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Post.init({
-    userId: {
-      type: DataTypes.UUIDV4,
-      references: {
-        model: 'User',
-        key: 'id',
+  Post.init(
+    {
+      userId: {
+        type: DataTypes.UUIDV4,
+        references: {
+          model: 'User',
+          key: 'id',
+        },
       },
-    },
-    gameId: {
-      type: DataTypes.UUIDV4,
-      references: {
-        model: 'Games',
-        key: 'id',
+      gameId: {
+        type: DataTypes.UUIDV4,
+        references: {
+          model: 'Games',
+          key: 'id',
+        },
       },
-    },
-    requiredRank: {
-      type: DataTypes.UUIDV4,
-      references: {
-        model: 'GameRank',
-        id: 'id',
+      requiredRank: {
+        type: DataTypes.UUIDV4,
+        references: {
+          model: 'GameRank',
+          id: 'id',
+        },
       },
+      text: DataTypes.STRING,
     },
-    text: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Post',
-  });
+    {
+      sequelize,
+      modelName: 'Post',
+    },
+  );
   return Post;
 };

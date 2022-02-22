@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class GameRank extends Model {
@@ -13,19 +11,22 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  GameRank.init({
-    gameId: {
-      type: DataTypes.UUIDV4,
-      references: {
-        model: 'Games',
-        key: 'id',
+  GameRank.init(
+    {
+      gameId: {
+        type: DataTypes.UUIDV4,
+        references: {
+          model: 'Games',
+          key: 'id',
+        },
       },
+      rankValue: DataTypes.INTEGER,
+      rankName: DataTypes.STRING,
     },
-    rankValue: DataTypes.INTEGER,
-    rankName: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'GameRank',
-  });
+    {
+      sequelize,
+      modelName: 'GameRank',
+    },
+  );
   return GameRank;
 };

@@ -8,5 +8,6 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   const server = { port, NODE_ENV: process.env.NODE_ENV };
+  // eslint-disable-next-line no-console
   console.log(server);
 });

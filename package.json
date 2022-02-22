@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier-format": "prettier --config .prettierrc \"src/**/*.js\" --write",
+    "lint": "eslint . --ext .js"
   },
   "author": "Victor F.",
   "license": "ISC",
