@@ -13,6 +13,8 @@
     "global-require": "off",
     "no-unused-vars": ["error", { "args": "none" }],
     "implicit-arrow-linebreak": 0,
-    "import/no-dynamic-require": "off"
+    "import/no-dynamic-require": "off",
+    "object-curly-newline": "off",
+    "operator-linebreak": ["error", "after"]
   }
 }
