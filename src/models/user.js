@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: () => uuid(),
       },
       name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       nickname: DataTypes.STRING,
       password: DataTypes.STRING,
     },

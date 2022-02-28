@@ -16,6 +16,7 @@
     "import/no-dynamic-require": "off",
     "object-curly-newline": "off",
     "operator-linebreak": ["error", "after"],
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "consistent-return": "off"
   }
 }
