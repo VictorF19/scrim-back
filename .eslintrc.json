@@ -15,6 +15,7 @@
     "implicit-arrow-linebreak": 0,
     "import/no-dynamic-require": "off",
     "object-curly-newline": "off",
-    "operator-linebreak": ["error", "after"]
+    "operator-linebreak": ["error", "after"],
+    "no-param-reassign": "off"
   }
 }
