@@ -32,9 +32,9 @@ class Application {
           // function signature: someControllerHandler (req, res, next) {}
           const someControllerHandler = controllerHandler(someExpressFunction);
 
-          const requestSteps = controller.middlewares
-            // .map((middleware) => middleware(models))
-            .concat(someControllerHandler);
+          const requestSteps = controller.middlewares.concat(
+            someControllerHandler,
+          );
 
           /**
            * Adds the controller to the app instance
