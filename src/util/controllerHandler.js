@@ -9,15 +9,6 @@ exports.controllerHandler = (controller) => async (req, res, next) => {
       console.error(error);
     }
 
-    let status = 500;
-    let message = 'An unexpected error ocurred';
-
-    // improve the way to decide if a error can be shown to the user
-    if (error.errors[0]) {
-      status = 400;
-      message = error.errors[0].message;
-    }
-
-    return res.status(status).json(message);
+    return res.status(500).json({ message: 'An unexpected error ocurred' });
   }
 };
