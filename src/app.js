@@ -22,11 +22,12 @@ class Application {
 
       listControllers.forEach((controllerFolder) => {
         const methods = fs
-          .readdirSync(`${dir}\\${controllerFolder}`)
+          .readdirSync(path.join(dir, controllerFolder))
           .filter((file) => file !== 'rules.js');
 
         methods.forEach((controllerFile) => {
-          const controller = require(`${dir}\\${controllerFolder}\\${controllerFile}`);
+          const resolvedPath = path.join(dir, controllerFolder, controllerFile);
+          const controller = require(resolvedPath);
 
           // function signature: someExpressFunction (req, res, next) {}
           const someExpressFunction = controller.handler(models);
