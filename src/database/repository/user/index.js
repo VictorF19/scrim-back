@@ -10,7 +10,11 @@ class User {
     return user.save();
   }
 
-  async findUser({ email, password }) {
+  async checkUserExists(email) {
+    return this.userModel.findOne({ where: { email } });
+  }
+
+  async checkUserWithPassword({ email, password }) {
     const user = await this.userModel.findOne({ where: { email } });
 
     if (user && (await bcrypt.compare(password, user.password))) {
