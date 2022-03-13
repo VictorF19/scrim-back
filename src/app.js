@@ -19,7 +19,9 @@ class Application {
       const listControllers = fs.readdirSync(dir);
 
       listControllers.forEach((controllerFolder) => {
-        const methods = fs.readdirSync(`${dir}\\${controllerFolder}`);
+        const methods = fs
+          .readdirSync(`${dir}\\${controllerFolder}`)
+          .filter((file) => file !== 'rules.js');
 
         methods.forEach((controllerFile) => {
           const controller = require(`${dir}\\${controllerFolder}\\${controllerFile}`);
@@ -31,7 +33,7 @@ class Application {
           const someControllerHandler = controllerHandler(someExpressFunction);
 
           const requestSteps = controller.middlewares
-            .map((middleware) => middleware(models))
+            // .map((middleware) => middleware(models))
             .concat(someControllerHandler);
 
           /**
