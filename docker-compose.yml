@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+  db:
+    container_name: SCRIM_POSTGRES
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ../data:/var/lib/postgresql/data/
+
+  api:
+    container_name: SCRIM_API
+    build: .
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/scrim-back
+    depends_on:
+      - db
