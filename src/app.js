@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const morgan = require('morgan');
+const cors = require('cors');
 const { controllerHandler } = require('./util/controllerHandler');
 
 class Application {
@@ -14,6 +15,7 @@ class Application {
     try {
       this.app.use(this.express.json());
       this.app.use(morgan('combined'));
+      this.app.use(cors());
 
       const dir = path.join(__dirname, 'controllers');
       const listControllers = fs.readdirSync(dir);
