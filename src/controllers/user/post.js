@@ -20,5 +20,9 @@ exports.handler = (models) => async (req, res) => {
     password,
     nickname,
   });
-  return res.status(200).json({ user, token: generateToken({ id: user.id }) });
+
+  return res.status(201).json({
+    user: { name: user.name, email: user.email, nickname: user.nickname },
+    token: generateToken({ id: user.id }),
+  });
 };
