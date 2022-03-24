@@ -30,7 +30,7 @@ done
 docker run -d \
     --name scrim \
     -e POSTGRES_PASSWORD=$password \
-    -p $port:port \
+    -p 5432:5432 \
     -e PGDATA=/var/lib/postgresql/data/pgdata \
     -v scrim-postgres:/var/lib/postgresql/data \
     postgres
