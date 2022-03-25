@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
 const { controllerHandler } = require('./util/controllerHandler');
+const { validateAuthorization } = require('./util/jwt');
 
 class Application {
   constructor(express, modelInterface) {
@@ -35,8 +36,14 @@ class Application {
           // function signature: someControllerHandler (req, res, next) {}
           const someControllerHandler = controllerHandler(someExpressFunction);
 
-          const requestSteps = controller.middlewares.concat(
-            someControllerHandler,
+          const requestSteps = [];
+
+          if (controller.authenticate) {
+            requestSteps.push(validateAuthorization);
+          }
+
+          requestSteps.push(
+            controller.middlewares.concat(someControllerHandler),
           );
 
           /**

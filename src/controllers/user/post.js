@@ -4,6 +4,7 @@ const { validateUserBody } = require('./rules');
 
 exports.path = '/user';
 exports.method = 'post';
+exports.authenticate = false;
 exports.middlewares = [validateUserBody, validateErrorBody];
 exports.handler = (models) => async (req, res) => {
   const { name, email, password, nickname } = req.body;

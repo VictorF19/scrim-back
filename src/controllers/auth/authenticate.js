@@ -2,6 +2,7 @@ const { generateToken } = require('../../util/jwt');
 
 exports.path = '/auth';
 exports.method = 'post';
+exports.authenticate = false;
 exports.middlewares = [];
 exports.handler = (models) => async (req, res) => {
   const { email, password } = req.body;

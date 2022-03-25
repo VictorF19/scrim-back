@@ -10,6 +10,10 @@ class User {
     return user.save();
   }
 
+  async deleteUserById(id) {
+    return this.userModel.destroy({ where: { id } });
+  }
+
   async checkUserExists(email) {
     return this.userModel.findOne({ where: { email } });
   }
