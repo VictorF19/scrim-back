@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { controllerHandler } = require('./controllerHandler');
 
-const { TOKEN_SECRET, TOKEN_EXPIRATION_SEC } = process.env;
+const { TOKEN_SECRET, TOKEN_EXPIRATION_TIME } = process.env;
 
 const verifyToken = (token) => jwt.verify(token, TOKEN_SECRET);
 
@@ -44,6 +44,6 @@ exports.validateAuthorization = controllerHandler(async (req, res, next) => {
 // eslint-disable-next-line arrow-body-style
 exports.generateToken = (object) => {
   return jwt.sign(object, TOKEN_SECRET, {
-    expiresIn: TOKEN_EXPIRATION_SEC,
+    expiresIn: TOKEN_EXPIRATION_TIME,
   });
 };
