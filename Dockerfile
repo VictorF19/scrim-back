@@ -1,4 +1,4 @@
-FROM node:15
+FROM node:17-alpine
 
 WORKDIR /app
 
@@ -6,4 +6,4 @@ COPY . .
 
 RUN npm install
 
-ENTRYPOINT ["/bin/bash", "./run.sh"]
+ENTRYPOINT ["/bin/sh", "./run.sh"]
