@@ -63,20 +63,4 @@ describe('JWT methods test', () => {
     expect(resMock.statusCode).toBe(401);
     expect(resMock._getJSON().message).toBe('Invalid Authentication format');
   });
-
-  // it('Validate Authorization sending invalid Token', async () => {
-  //   const reqMock = new RequestMock({
-  //     headers: {
-  //       Authorization:
-  //         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1MjIwMzksImV4cCI6MTY0ODUyNTYzOX0.ZBcpVli9mHofxUQdaiNlxJ4qSjrHmqvtQabRhg9gUig',
-  //     },
-  //   });
-
-  //   const resMock = new ResponseMock({ request: reqMock });
-
-  //   await validateAuthorization(reqMock, resMock, () => null);
-
-  //   expect(resMock.statusCode).toBe(401);
-  //   expect(resMock._getJSON().message).toBe('Invalid token provided');
-  // });
 });
